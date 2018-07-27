@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper, Map, InfoWindow, Marker } from 'google-maps-react'
+import { GoogleApiWrapper, Map } from 'google-maps-react'
 
 // nullStyle used to remove styles from map, so it can be styled in my App.css
 const nullStyle = {
@@ -13,13 +13,27 @@ const nullStyle = {
 }
 
 export class MapContainer extends Component {
+  markers = []
+  infowindows = []
 
-  // TODO: delete after finish
-  // logas = () => {
-  //   console.log(window.google)
-  // }
-  componentDidMount() {debugger}
-  dadadum = () => {debugger}
+  createMarkers = (mapProps, map) => {
+    this.props.places.map(place => {
+      let marker = new this.props.google.maps.Marker({
+        position: place.position,
+        title: place.title,
+        name: place.name,
+        map: map,
+        animation: this.props.google.maps.Animation.DROP,
+        id: place.name
+      })
+      this.markers.push(marker)
+      let infoWindow = new this.props.google.maps.InfoWindow({
+        marker: marker,
+        content: `<div>${place.title}</div>`
+      })
+      marker.addListener('click', () => infoWindow.open(map, marker))
+    })
+  }
 
   render() {
     return (
@@ -29,8 +43,9 @@ export class MapContainer extends Component {
         zoom={13}
         initialCenter={{lat: 54.753986, lng: 24.670219}}
         style={nullStyle}
+        onReady={this.createMarkers}
       >
-        {this.props.places.map(place => (
+        {/* {this.props.places.map(place => (
           <Marker
             key={`marker-${place.name}`}
             title={place.title}
@@ -38,14 +53,12 @@ export class MapContainer extends Component {
             position={place.position}
             // onClick={this.dadadum}
           />
-        ))}
-        {this.props.places.map(place => (
-          <InfoWindow
-            key={`infowindow-${place.name}`}
-            visible={true}>
-            <div>{place.title}</div>
-          </InfoWindow>
-        ))}
+        ))} */}
+        {/* <InfoWindow
+          visible={true}
+          position={place.position}>
+          <div>{place.title}</div>
+        </InfoWindow> */}
       </Map>
     )
   }
