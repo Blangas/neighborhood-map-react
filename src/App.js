@@ -32,6 +32,14 @@ const places = [
 ]
 
 export class App extends Component {
+  state = {
+    places: places
+  }
+
+  filterPlaces = (value) => {
+
+  }
+
   render() {
     return (
       <div className="app">
@@ -40,6 +48,7 @@ export class App extends Component {
         />
         <List
           places={places}
+          filterPlaces={this.filterPlaces}
         />
       </div>
     )
