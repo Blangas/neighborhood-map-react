@@ -5,6 +5,14 @@ class List extends Component {
     e.preventDefault()
   }
 
+  titleShortener = (title) => {
+    if (title.length > 20) {
+      return title.slice(0, 20) + '...'
+    } else {
+      return title
+    }
+  }
+
   render() {
     return (
       <div className="list">
@@ -19,7 +27,7 @@ class List extends Component {
           {this.props.places.map(place => (
             <li key={place.name}>
               <a href="#" onClick={this.pickMarker}>
-                {place.title.slice(0, 20)}
+                {this.titleShortener(place.title)}
               </a>
             </li>
           ))}
