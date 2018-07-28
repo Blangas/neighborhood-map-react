@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 
 class List extends Component {
+  pickMarker = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     return (
       <div className="list">
@@ -8,7 +12,9 @@ class List extends Component {
         <ul>
           {this.props.places.map(place => (
             <li key={place.name}>
-              {place.title.slice(0, 20)}
+              <a href="#" onClick={this.pickMarker}>
+                {place.title.slice(0, 20)}
+              </a>
             </li>
           ))}
         </ul>

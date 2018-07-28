@@ -26,6 +26,19 @@ h2 {
   margin-left: 20px;
 }
 
+li {
+  padding: 2px;
+}
+
+li:hover {
+  background-color: purple;
+  border-radius: 4px;
+}
+
+li > a {
+  text-decoration: none;
+  color:#000;
+}
 
 
 /* @keyframes App-logo-spin {
