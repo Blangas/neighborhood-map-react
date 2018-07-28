@@ -15,12 +15,14 @@ const nullStyle = {
 export class MapContainer extends Component {
   state = {
     markers: [],
-    infowindows: []
+    activeMarker: {},
+    infowindow: {},
   }
 
   // I creating markers not with google-maps-react package, so I would have more control
   createMarkers = (mapProps, map) => {
     this.setState({mapProps, map}) //save if I will need them late
+
     let newMarkers = []
     this.props.places.map(place => {
       let marker = new this.props.google.maps.Marker({
@@ -31,14 +33,27 @@ export class MapContainer extends Component {
         animation: this.props.google.maps.Animation.DROP,
         id: place.name
       })
+      marker.addListener('click', () => this.activeMarker(map, marker))
       newMarkers.push(marker)
-      let infoWindow = new this.props.google.maps.InfoWindow({
-        marker: marker,
-        content: `<div>${place.title}</div>`
-      })
-      marker.addListener('click', () => infoWindow.open(map, marker))
+
+      // let infoWindow = new this.props.google.maps.InfoWindow({
+      //   marker: marker,
+      //   content: `<div>${place.title}</div>`
+      // })
     })
     this.setState({markers: newMarkers})
+
+    let infoWindow = new this.props.google.maps.InfoWindow
+    this.setState({infoWindow})
+  }
+
+  activeMarker(map, marker) {
+    this.setState({activeMarker: marker})
+    const infoWindow = this.state.infoWindow
+    this.setState({infoWindowVisible: true})
+    infoWindow.setContent(`<div>${marker.title}</div>`)
+    infoWindow.setPosition(marker.position)
+    infoWindow.open(map, marker)
   }
 
   // on props update check which markers show/hide
