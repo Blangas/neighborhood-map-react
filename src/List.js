@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
 
 class List extends Component {
-  pickMarker = (e) => {
-    e.preventDefault()
-  }
 
   // function to shorten too long list items
   titleShortener = (title) => {
@@ -27,7 +24,7 @@ class List extends Component {
         <ul>
           {this.props.places.map(place => (
             <li key={place.name}>
-              <a href="#" onClick={this.pickMarker}>
+              <a href="#" className={place.name} onClick={this.props.pickMarker}>
                 {this.titleShortener(place.title)}
               </a>
             </li>

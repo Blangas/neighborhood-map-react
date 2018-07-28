@@ -33,7 +33,8 @@ const allPlaces = [
 
 export class App extends Component {
   state = {
-    places: allPlaces
+    places: allPlaces,
+    pickMarkerName: ''
   }
 
   // function to filter original places and give new places array for rendering
@@ -47,15 +48,22 @@ export class App extends Component {
     }
   }
 
+  pickMarker = (e) => {
+    e.preventDefault()
+    this.setState({pickMarkerName: e.target.className})
+  }
+
   render() {
     return (
       <div className="app">
         <MapContainer
           places={this.state.places}
+          pickMarkerName={this.state.pickMarkerName}
         />
         <List
           places={this.state.places}
           filterPlaces={this.filterPlaces}
+          pickMarker={this.pickMarker}
         />
       </div>
     )

@@ -17,6 +17,8 @@ export class MapContainer extends Component {
     markers: [],
     activeMarker: {},
     infowindow: {},
+    map: {},
+    mapProps: {}
   }
 
   // I creating markers not with google-maps-react package, so I would have more control
@@ -43,7 +45,7 @@ export class MapContainer extends Component {
     })
     this.setState({markers: newMarkers})
 
-    let infoWindow = new this.props.google.maps.InfoWindow
+    let infoWindow = new this.props.google.maps.InfoWindow()
     this.setState({infoWindow})
   }
 
@@ -58,8 +60,9 @@ export class MapContainer extends Component {
 
   // on props update check which markers show/hide
   componentDidUpdate(prevProps, prevState) {
-    const places = this.props.places
+    // Showing places list/markers update
     const markers = this.state.markers
+    const places = this.props.places
     if (prevProps.places !== places) {
       // create on string of new places names
       let placesNames = ''
@@ -72,6 +75,16 @@ export class MapContainer extends Component {
           markers[i].setMap(this.state.map)
         } else {
           markers[i].setMap(null)
+        }
+      }
+    }
+
+    // Showing selected from the list marker update
+    const pickMarkerName = this.props.pickMarkerName
+    if (prevProps.pickMarkerName !== pickMarkerName) {
+      for (let i = 0; i < markers.length; i++) {
+        if (markers[i].name === pickMarkerName) {
+          this.activeMarker(this.state.map, markers[i])
         }
       }
     }
