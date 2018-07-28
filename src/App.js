@@ -36,6 +36,7 @@ export class App extends Component {
     places: allPlaces
   }
 
+  // function to filter original places and give new places array for rendering
   filterPlaces = (value) => {
     if (value) {
       value = value.trim().toLowerCase()

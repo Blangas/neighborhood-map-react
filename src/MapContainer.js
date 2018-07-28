@@ -13,11 +13,15 @@ const nullStyle = {
 }
 
 export class MapContainer extends Component {
-  markers = []
-  infowindows = []
+  state = {
+    markers: [],
+    infowindows: []
+  }
 
   // I creating markers not with google-maps-react package, so I would have more control
   createMarkers = (mapProps, map) => {
+    this.setState({mapProps, map}) //save if I will need them late
+    let newMarkers = []
     this.props.places.map(place => {
       let marker = new this.props.google.maps.Marker({
         position: place.position,
@@ -27,13 +31,35 @@ export class MapContainer extends Component {
         animation: this.props.google.maps.Animation.DROP,
         id: place.name
       })
-      this.markers.push(marker)
+      newMarkers.push(marker)
       let infoWindow = new this.props.google.maps.InfoWindow({
         marker: marker,
         content: `<div>${place.title}</div>`
       })
       marker.addListener('click', () => infoWindow.open(map, marker))
     })
+    this.setState({markers: newMarkers})
+  }
+
+  // on props update check which markers show/hide
+  componentDidUpdate(prevProps, prevState) {
+    const places = this.props.places
+    const markers = this.state.markers
+    if (prevProps.places !== places) {
+      // create on string of new places names
+      let placesNames = ''
+      for (let i = 0; i < places.length; i++) {
+        placesNames += places[i].name
+      }
+      // compare markers name with placesNames and hide mismatch
+      for (let i = 0; i < markers.length; i++) {
+        if (placesNames.includes(markers[i].name)) {
+          markers[i].setMap(this.state.map)
+        } else {
+          markers[i].setMap(null)
+        }
+      }
+    }
   }
 
   render() {
