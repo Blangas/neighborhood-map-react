@@ -3,7 +3,7 @@ import './App.css'
 import MapContainer from './MapContainer'
 import List from './List'
 
-const places = [
+const allPlaces = [
   {
     title: 'Elektrenu marios',
     name: 'elektrenu-marios',
@@ -33,21 +33,27 @@ const places = [
 
 export class App extends Component {
   state = {
-    places: places
+    places: allPlaces
   }
 
   filterPlaces = (value) => {
-
+    if (value) {
+      value = value.trim().toLowerCase()
+      let newPlaces = allPlaces.filter((place) => place.title.toLowerCase().includes(value))
+      this.setState({places: newPlaces})
+    } else {
+      this.setState({places: allPlaces})
+    }
   }
 
   render() {
     return (
       <div className="app">
         <MapContainer
-          places={places}
+          places={this.state.places}
         />
         <List
-          places={places}
+          places={this.state.places}
           filterPlaces={this.filterPlaces}
         />
       </div>

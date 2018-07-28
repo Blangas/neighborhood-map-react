@@ -5,6 +5,7 @@ class List extends Component {
     e.preventDefault()
   }
 
+  // function to shorten too long list items
   titleShortener = (title) => {
     if (title.length > 20) {
       return title.slice(0, 20) + '...'
