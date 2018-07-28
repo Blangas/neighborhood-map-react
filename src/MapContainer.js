@@ -16,6 +16,7 @@ export class MapContainer extends Component {
   markers = []
   infowindows = []
 
+  // I creating markers not with google-maps-react package, so I would have more control
   createMarkers = (mapProps, map) => {
     this.props.places.map(place => {
       let marker = new this.props.google.maps.Marker({
