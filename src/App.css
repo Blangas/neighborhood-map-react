@@ -31,18 +31,23 @@ h2 {
 }
 
 li {
-  padding: 2px;
+  padding: 3px 0;
 }
 
 li:hover {
   background-color: purple;
   border-radius: 4px;
+  color: white;
 }
 
-li > a {
+li > button {
   text-decoration: none;
-  color:#000;
+  background-color: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
 }
+
 
 
 /* @keyframes App-logo-spin {

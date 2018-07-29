@@ -24,9 +24,9 @@ class List extends Component {
         <ul>
           {this.props.places.map(place => (
             <li key={place.name}>
-              <a href="#" className={place.name} onClick={this.props.pickMarker}>
+              <button className={place.name} onClick={this.props.pickMarker}>
                 {this.titleShortener(place.title)}
-              </a>
+              </button>
             </li>
           ))}
         </ul>
