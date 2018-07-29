@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react'
+import { GoogleApiWrapper, Map } from 'google-maps-react'
 
 // nullStyle used to remove styles from map, so it can be styled in my App.css
 const nullStyle = {

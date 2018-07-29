@@ -12,14 +12,30 @@ body {
   bottom: 0;
   top: 0;
   width: calc(100% - 220px);
+  z-index: 10;
 }
 
 /* LIST */
-.list {
+.menu {
+  position: absolute;
+  top: 10px;
+  left: 120px;
+  z-index: 50;
+}
+
+button {
+  border: none;
+  background-color: white;
+  padding: 10px;
+  font-weight: bold;
+}
+
+#list {
   position: absolute;
   background-color: #fff;
   width: 220px;
   height: 100vh;
+  z-index: 100;
 }
 
 h2 {
@@ -59,6 +75,15 @@ li > button:focus {
 }
 
 
+@media (max-width: 500px) {
+  .map>div {
+    width: 100%;
+  }
+
+  .hide {
+    left: -220px;
+  }
+}
 
 /* @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
