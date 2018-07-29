@@ -3,31 +3,39 @@ import './App.css'
 import MapContainer from './MapContainer'
 import List from './List'
 
+
+
 const allPlaces = [
   {
-    title: 'Elektrenu marios',
-    name: 'elektrenu-marios',
-    position: {lat: 54.755719, lng: 24.669558}
+    title: 'Boulton, Watt and Murdoch Statue',
+    name: 'statue01',
+    position: {lat: 52.478573, lng: -1.908425},
+    tags: ['Statue', 'Historical', 'Landmark']
   },{
-    title: 'Ice Hockey Arena',
-    name: 'ice-hockey-arena',
-    position: {lat: 54.78447, lng: 24.669604}
+    title: 'Queen Victoria Statue',
+    name: 'statue02',
+    position: {lat: 52.479655, lng: -1.902996},
+    tags: ['Statue', 'Historical', 'Landmark']
   },{
-    title: 'Power Plant',
-    name: 'power-plant',
-    position: {lat: 54.771311, lng: 24.648063}
+    title: 'Tony Hancock Sculpture',
+    name: 'statue03',
+    position: {lat: 52.482194, lng: -1.893837},
+    tags: ['Sculpture', 'Landmark']
   },{
-    title: 'Main Beach',
-    name: 'main-beach',
-    position: {lat: 54.782091, lng: 24.665443}
+    title: 'Admiral Horatio Nelson Monument',
+    name: 'statue04',
+    position: {lat: 52.477455, lng: -1.893966},
+    tags: ['Statue', 'Historical', 'Landmark']
   },{
-    title: 'Second Beach',
-    name: 'second-beach',
-    position: {lat: 54.779074, lng: 24.677175}
+    title: 'Equestrian statue of King George 1',
+    name: 'statue05',
+    position: {lat: 52.450125, lng: -1.926999},
+    tags: ['Statue', 'Historical', 'Landmark']
   },{
-    title: 'Elektrenu Mergeles Marijos Kankiniu Karalienes baznycia',
-    name: 'church',
-    position: {lat: 54.782097, lng: 24.680786}
+    title: 'Birmingham Civilian War Memorial',
+    name: 'statue06',
+    position: {lat: 52.476686, lng: -1.893907},
+    tags: ['Historical', 'Landmark']
   }
 ]
 
