@@ -38,6 +38,7 @@ li:hover {
   background-color: purple;
   border-radius: 4px;
   color: white;
+  cursor: pointer;
 }
 
 li > button {
@@ -45,7 +46,16 @@ li > button {
   background-color: inherit;
   color: inherit;
   border: none;
-  padding: 0;
+  padding: 0 2px;
+  cursor: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+li > button:focus {
+  outline: 0;
+  border: 2px solid purple;
+  border-radius: 4px;
 }
 
 
