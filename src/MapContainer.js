@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { GoogleApiWrapper, Map } from 'google-maps-react'
+import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react'
 
 // nullStyle used to remove styles from map, so it can be styled in my App.css
 const nullStyle = {
@@ -31,6 +31,7 @@ export class MapContainer extends Component {
       let marker = new this.props.google.maps.Marker({
         position: places[i].position,
         title: places[i].title,
+        address: places[i].address,
         name: places[i].name,
         map: map,
         animation: this.props.google.maps.Animation.DROP,
@@ -53,7 +54,10 @@ export class MapContainer extends Component {
   activeMarker(map, marker) {
     this.setState({activeMarker: marker})
     const infoWindow = this.state.infoWindow
-    infoWindow.setContent(`<div>${marker.title}</div>`)
+    infoWindow.setContent(
+      `<div><strong>${marker.title}</strong></div>
+      <div>${marker.address}</div>`
+    )
     infoWindow.setPosition(marker.position)
     infoWindow.open(map, marker)
     // this.infoWindowContent(marker)
@@ -123,7 +127,7 @@ export class MapContainer extends Component {
         style={nullStyle}
         onReady={this.createMarkers}
       >
-        {/* {this.props.places.map(place => (
+        {/* TODO {this.props.places.map(place => (
           <Marker
             key={`marker-${place.name}`}
             title={place.title}

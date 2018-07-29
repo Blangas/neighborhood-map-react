@@ -10,31 +10,37 @@ const allPlaces = [
     title: 'Boulton, Watt and Murdoch Statue',
     name: 'statue01',
     position: {lat: 52.478573, lng: -1.908425},
+    address: '300 Centenary Square, Birmingham B1 2DR, UK',
     tags: ['Statue', 'Historical', 'Landmark']
   },{
     title: 'Queen Victoria Statue',
     name: 'statue02',
     position: {lat: 52.479655, lng: -1.902996},
+    address: '38 Paradise St, Birmingham B1 2AF, UK',
     tags: ['Statue', 'Historical', 'Landmark']
   },{
     title: 'Tony Hancock Sculpture',
     name: 'statue03',
     position: {lat: 52.482194, lng: -1.893837},
+    address: '150 Corporation St, Birmingham B4 6TB, UK',
     tags: ['Sculpture', 'Landmark']
   },{
     title: 'Admiral Horatio Nelson Monument',
     name: 'statue04',
     position: {lat: 52.477455, lng: -1.893966},
+    address: 'Birmingham B5 4BW, UK',
     tags: ['Statue', 'Historical', 'Landmark']
   },{
     title: 'Equestrian statue of King George 1',
     name: 'statue05',
     position: {lat: 52.450125, lng: -1.926999},
+    address: 'Edgbaston Park Rd, Birmingham B15 2UD, UK',
     tags: ['Statue', 'Historical', 'Landmark']
   },{
     title: 'Birmingham Civilian War Memorial',
     name: 'statue06',
     position: {lat: 52.476686, lng: -1.893907},
+    address: 'Edgbaston St, Birmingham B5 5BB, UK',
     tags: ['Historical', 'Landmark']
   }
 ]
