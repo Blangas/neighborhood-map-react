@@ -31,7 +31,7 @@ h2 {
 }
 
 li {
-  padding: 3px 0;
+  padding: 2px 0;
 }
 
 li:hover {
@@ -46,7 +46,7 @@ li > button {
   background-color: inherit;
   color: inherit;
   border: none;
-  padding: 0 2px;
+  padding: 2px 1px;
   cursor: inherit;
   width: 100%;
   text-align: left;
