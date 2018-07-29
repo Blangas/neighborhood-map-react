@@ -26,14 +26,15 @@ export class MapContainer extends Component {
     this.setState({mapProps, map}) //save if I will need them late
 
     let newMarkers = []
-    this.props.places.map(place => {
+    let places = this.props.places
+    for (let i = 0; i < places.length; i++) {
       let marker = new this.props.google.maps.Marker({
-        position: place.position,
-        title: place.title,
-        name: place.name,
+        position: places[i].position,
+        title: places[i].title,
+        name: places[i].name,
         map: map,
         animation: this.props.google.maps.Animation.DROP,
-        id: place.name
+        id: places[i].name
       })
       marker.addListener('click', () => this.activeMarker(map, marker))
       newMarkers.push(marker)
@@ -42,7 +43,7 @@ export class MapContainer extends Component {
       //   marker: marker,
       //   content: `<div>${place.title}</div>`
       // })
-    })
+    }
     this.setState({markers: newMarkers})
 
     let infoWindow = new this.props.google.maps.InfoWindow()
