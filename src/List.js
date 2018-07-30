@@ -25,9 +25,7 @@ class List extends Component {
   render() {
     return (
       <div>
-        <div className="menu">
-          <button onClick={this.showList}>Places list</button>
-        </div>
+        <button className="menu-button" onClick={this.showList}>Places list</button>
         <div id="list" className={this.state.showMenu}>
           <h2>List of Places</h2>
           <input
@@ -45,7 +43,7 @@ class List extends Component {
               </li>
             ))}
           </ul>
-          <button onClick={this.hideList}>{'<< Hide list'}</button>
+          <button className="hide-button" onClick={this.hideList}>{'<< Hide list'}</button>
         </div>
       </div>
     )

@@ -60,7 +60,7 @@ export class MapContainer extends Component {
     )
     infoWindow.setPosition(marker.position)
     infoWindow.open(map, marker)
-    // this.infoWindowContent(marker)
+    this.infoWindowContent(marker)
 
   }
 
@@ -97,25 +97,25 @@ export class MapContainer extends Component {
   }
 
   //  TODO 3rd party API
-  // infoWindowContent = (marker) => {
-  //   let flickr = 'https://api.flickr.com/services/rest/?'+
-  //   'method=flickr.photos.search'+
-  //   '&api_key=22b236d03286cc864a67b31c413e64fe'+
-  //   '&text='+'Statue'+
-  //   '&content_type=1'+
-  //   '&lat='+'52.486243'+
-  //   '&lon='+'-1.890401'+
-  //   '&radius=5'+
-  //   '&per_page=1'+
-  //   '&format=json&nojsoncallback=1'
-  //   // '&auth_token=72157669591509787-4275fc72a9edb20e&api_sig=0894f155bf4fdb3fa7a1ea2eda5f5ae8'+
-  //
-  //   fetch(flickr)
-  //     .then((response) => {
-  //       console.log(flickr)
-  //       console.log(response)
-  //     })
-  // }
+  infoWindowContent = (marker) => {
+    let flickr = 'https://api.flickr.com/services/rest/?'+
+    'method=flickr.photos.search'+
+    '&api_key=22b236d03286cc864a67b31c413e64fe'+
+    '&text='+'Statue'+
+    '&content_type=1'+
+    // '&lat='+'52.486243'+
+    // '&lon='+'-1.890401'+
+    '&radius=5'+
+    '&per_page=10'+
+    '&format=json&nojsoncallback=1'
+    // '&auth_token=72157669591509787-4275fc72a9edb20e&api_sig=0894f155bf4fdb3fa7a1ea2eda5f5ae8'+
+
+    window.fetch(flickr)
+      .then((response) => {
+        console.log(flickr)
+        console.log(response)
+      })
+  }
 
   render() {
     return (
