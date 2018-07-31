@@ -15,6 +15,14 @@ body {
   z-index: 10;
 }
 
+.photos {
+  width: 300px;
+}
+
+img {
+  width: 281px;
+}
+
 /* LIST */
 .menu-button {
   position: absolute;

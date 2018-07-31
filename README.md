@@ -7,6 +7,8 @@ And used examples from:
       https://www.fullstackreact.com/articles/how-to-write-a-google-maps-react-component/#
   - google-maps-react makes adding Google Maps Api to a React app a breeze
       https://itnext.io/google-maps-react-makes-adding-google-maps-api-to-a-react-app-a-breeze-effb7b89e54
+  - How can I fetch data from an external API in React.js?
+      https://www.quora.com/How-can-I-fetch-data-from-an-external-API-in-React-js-1#
 
 
 
