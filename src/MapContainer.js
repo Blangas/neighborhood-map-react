@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { GoogleApiWrapper, Map, Marker, InfoWindow } from 'google-maps-react'
 import axios from 'axios'
+import InfoWindowContent from './InfoWindowContent'
 
 const nullStyle = {
   position: null,
@@ -18,21 +19,48 @@ export class MapContainer extends Component {
     activePlace: {},
     showingInfoWindow: true,
     places: [],
-    pickMarkerName: null
+    pickMarkerName: null,
+    photos: []
   }
 
   markers = []
+
+  onMapReady = (mapProps, map) => {
+    this.setState({places: this.props.places})
+  }
 
   pickMarker = (props, marker, e) => {
     this.setState({
       activeMarker: marker,
       activePlace: props,
-      showingInfoWindow: true
+      showingInfoWindow: true,
     })
+    this.infoWindowContent(marker)
   }
 
-  onMapReady = (mapProps, map) => {
-    this.setState({places: this.props.places})
+  infoWindowContent = (marker) => {
+    let flickrSearch = 'https://api.flickr.com/services/rest/?'+
+    'method=flickr.photos.search'+
+    '&api_key=22b236d03286cc864a67b31c413e64fe'+
+    '&text='+marker.title+
+    '&content_type=1'+
+    // '&lat='+marker.position.lat+  //removed position search, because then it have 0 results
+    // '&lon='+marker.position.lng+
+    '&radius=5'+
+    '&per_page=10'+
+    '&format=json&nojsoncallback=1'
+    // '&auth_token=72157669591509787-4275fc72a9edb20e&api_sig=0894f155bf4fdb3fa7a1ea2eda5f5ae8'+
+
+
+    axios.get(flickrSearch)
+    .then((response) => {
+      console.log(response)
+      console.log(response.data.photos.photo)
+      this.setState({photos: response.data.photos.photo})
+    })
+    .catch((error) => {
+      console.log(`Got error in 1st step: ${error}`)
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -46,6 +74,8 @@ export class MapContainer extends Component {
       for (let i = 0; i < markers.length; i++) {
         if (markers[i].marker.name === this.props.pickMarkerName) {
           this.setState({activeMarker: markers[i].marker})
+
+          this.infoWindowContent(markers[i].marker)
         }
       }
     }
@@ -77,13 +107,14 @@ export class MapContainer extends Component {
           />
         ))}
         <InfoWindow
+          ref={(infoWindow) => {this.infoWindow = infoWindow}}
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
         >
-          <div>
-            <h3>{this.state.activeMarker.title}</h3>
-            <p>{this.state.activeMarker.address}</p>
-          </div>
+          <InfoWindowContent
+            marker={this.state.activeMarker}
+            photos={this.state.photos}
+          />
         </InfoWindow>
       </Map>
     )
