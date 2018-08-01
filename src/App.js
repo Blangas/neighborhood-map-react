@@ -67,6 +67,10 @@ export class App extends Component {
     this.setState({pickMarkerName: e.target.className})
   }
 
+  componentDidMount() {
+    this.setState({pickMarkerName: ''})
+  }
+
   render() {
     return (
       <div className="app">

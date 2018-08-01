@@ -16,9 +16,12 @@ export class MapContainer extends Component {
   state = {
     activeMarker: {},
     activePlace: {},
-    showingInfoWindow: false,
-    places: []
+    showingInfoWindow: true,
+    places: [],
+    pickMarkerName: null
   }
+
+  markers = []
 
   pickMarker = (props, marker, e) => {
     this.setState({
@@ -28,7 +31,7 @@ export class MapContainer extends Component {
     })
   }
 
-  componentDidMount() {
+  onMapReady = (mapProps, map) => {
     this.setState({places: this.props.places})
   }
 
@@ -36,20 +39,34 @@ export class MapContainer extends Component {
     if (prevProps.places !== this.props.places) {
       this.setState({places: this.props.places})
     }
+    // Sets active marker from list pick
+    if (prevProps.pickMarkerName !== this.props.pickMarkerName) {
+      let markers = this.markers
+      markers.splice(this.props.places.length) // fix to remove null elements after array becomes shorter because of search function
+      for (let i = 0; i < markers.length; i++) {
+        if (markers[i].marker.name === this.props.pickMarkerName) {
+          this.setState({activeMarker: markers[i].marker})
+        }
+      }
+    }
+    console.log('MapContainer did update.')
   }
 
   render() {
     return (
       <Map
+        ref={(map) => {this.map = map}}
         className={'map'}
         google={this.props.google}
         zoom={13}
         initialCenter={{lat: 52.486243, lng: -1.890401}}
         style={nullStyle}
-        onReady={this.createMarkers}
+        onReady={this.onMapReady}
+        onClick={this.onMapClick}
       >
-        {this.state.places.map(place => (
+        {this.state.places.map((place, i) => (
           <Marker
+            ref={(marker) => {this.markers[i] = marker}}
             key={`marker-${place.name}`}
             title={place.title}
             address={place.address}
