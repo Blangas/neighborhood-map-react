@@ -25,6 +25,7 @@ export default class InfoWindowContent extends Component {
         <div className="photos">
           {this.props.photos.map((photo, i) => (
             <img
+              key={photo.id}
               src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
               alt={this.props.marker.title+' photo '+i}
             />
