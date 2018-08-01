@@ -82,6 +82,13 @@ li > button:focus {
   border-radius: 4px;
 }
 
+.attribution {
+  position: absolute;
+  bottom: 10px;
+  left: 20px;
+  z-index: 1000;
+}
+
 
 @media (max-width: 500px) {
   .map>div {

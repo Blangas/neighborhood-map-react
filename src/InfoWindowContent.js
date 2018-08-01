@@ -23,8 +23,11 @@ export default class InfoWindowContent extends Component {
         <div><strong>{this.props.marker.title}</strong></div>
         <div>{this.props.marker.address}</div>
         <div className="photos">
-          {this.props.photos.map((photo) => (
-            <img src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`} />
+          {this.props.photos.map((photo, i) => (
+            <img
+              src={`https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`}
+              alt={this.props.marker.title+' photo '+i}
+            />
           ))}
         </div>
       </div>

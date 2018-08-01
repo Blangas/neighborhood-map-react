@@ -44,6 +44,7 @@ class List extends Component {
             ))}
           </ul>
           <button className="hide-button" onClick={this.hideList}>{'<< Hide list'}</button>
+          <p className="attribution">Photos source: <a href="https://www.flickr.com/">flickr</a></p>
         </div>
       </div>
     )
