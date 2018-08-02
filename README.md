@@ -1,4 +1,22 @@
+  ***Run app***
+To run a program locally:
+1. Install dependencies:
+      npm install
+2.  a) start production version:
+      npm start
+    b) deployment version:
+      npm install -g serve
+      serve -s build
 
+  ***Usage***
+Choosing location name from list or marker on map, shows info in marker info window.
+Can filter locations by name writing in search box.
+
+P.S. uses build in create-react-app service worker to cache resources.
+
+  ***Further development***
+App easily modifiable by changing locations array and map coordinates.
+Lack of design needs attention (will target this problem later)
 
   ***Project resources***
 This project was bootstrapped with [Create React App] (https://github.com/facebookincubator/create-react-app).
