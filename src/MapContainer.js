@@ -29,6 +29,13 @@ export class MapContainer extends Component {
     this.setState({places: this.props.places})
   }
 
+  onMapClick = (mapProps, map, e) => {
+    this.setState({
+      activeMarker: null,
+      showingInfoWindow: false
+    })
+  }
+
   pickMarker = (props, marker, e) => {
     this.setState({
       activeMarker: marker,
@@ -54,8 +61,6 @@ export class MapContainer extends Component {
 
     axios.get(flickrSearch)
     .then((response) => {
-      console.log(response)
-      console.log(response.data.photos.photo)
       this.setState({photos: response.data.photos.photo})
     })
     .catch((error) => {
