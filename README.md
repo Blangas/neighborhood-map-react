@@ -3,6 +3,8 @@ This project was bootstrapped with [Create React App] (https://github.com/facebo
 In project used packages:
   - google-maps-react
       https://www.npmjs.com/package/google-maps-react
+  - axios
+      https://github.com/axios/axios
 
 And used information/examples from:
   - How to Write a Google Maps React Component
@@ -22,7 +24,7 @@ And used information/examples from:
         https://reactjs.org/docs/refs-and-the-dom.html
     - React Top-Level API
         https://reactjs.org/docs/react-api.html
-
+  - Udacity lessons and examples.
 
 
 
