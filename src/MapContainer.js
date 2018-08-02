@@ -56,7 +56,6 @@ export class MapContainer extends Component {
     '&radius=5'+
     '&per_page=10'+
     '&format=json&nojsoncallback=1'
-    // '&auth_token=72157669591509787-4275fc72a9edb20e&api_sig=0894f155bf4fdb3fa7a1ea2eda5f5ae8'+
 
 
     axios.get(flickrSearch)
@@ -84,7 +83,6 @@ export class MapContainer extends Component {
         }
       }
     }
-    console.log('MapContainer did update.')
   }
 
   render() {
@@ -98,6 +96,7 @@ export class MapContainer extends Component {
         style={nullStyle}
         onReady={this.onMapReady}
         onClick={this.onMapClick}
+        aria-role="application"
       >
         {this.state.places.map((place, i) => (
           <Marker

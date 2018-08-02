@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 
 class List extends Component {
   state = {
-    showMenu: 'hide'
+    showMenu: 'hide',
+    menuButtonIndex: 0,
+    hideButtonIndex: -1
   }
 
   // function to shorten too long list items
@@ -15,17 +17,30 @@ class List extends Component {
   }
 
   showList = () => {
-    this.setState({showMenu: ''})
+    this.setState({
+      showMenu: '',
+      menuButtonIndex: -1,
+      hideButtonIndex: 0
+    })
   }
 
   hideList = () => {
-    this.setState({showMenu: 'hide'})
+    this.setState({
+      showMenu: 'hide',
+      menuButtonIndex: 0,
+      hideButtonIndex: -1
+    })
   }
 
   render() {
     return (
       <div>
-        <button className="menu-button" onClick={this.showList}>Places list</button>
+        <button
+          className="menu-button"
+          onClick={this.showList}
+          tabIndex={this.state.menuButtonIndex}>
+            Places list
+        </button>
         <div id="list" className={this.state.showMenu}>
           <h2>List of Places</h2>
           <input
