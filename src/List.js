@@ -54,8 +54,11 @@ class List extends Component {
           <ul>
             {this.props.places.map(place => (
               <li key={place.name}>
-                <button className={place.name} onClick={this.props.pickMarker}>
-                  {this.titleShortener(place.title)}
+                <button
+                  className={place.name}
+                  tabIndex="0"
+                  onClick={this.props.pickMarker}>
+                    {this.titleShortener(place.title)}
                 </button>
               </li>
             ))}
