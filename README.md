@@ -21,7 +21,13 @@ Lack of design needs attention (will target this problem later)
   ***Project resources***
 This project was bootstrapped with [Create React App] (https://github.com/facebookincubator/create-react-app).
 
-In project used packages:
+Used APIs:
+  - Google Maps API
+      https://cloud.google.com/maps-platform/
+  - flickr API
+      https://www.flickr.com/services/api/
+
+Used packages:
   - google-maps-react
       https://www.npmjs.com/package/google-maps-react
   - axios
