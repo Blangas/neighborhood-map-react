@@ -16,11 +16,12 @@ body {
 }
 
 .photos {
-  width: 300px;
+  width: 281px;
+  height: 300px
 }
 
 img {
-  width: 281px;
+  width: 100%;
 }
 
 /* LIST */
