@@ -43,11 +43,13 @@ class List extends Component {
         </button>
         <div id="list" className={this.state.showMenu}>
           <h2>List of Places</h2>
+          <p id="search-label">Search box:</p>
           <input
             className="search-box"
             type="text"
             placeholder="Search places"
             onChange={(e) => this.props.filterPlaces(e.target.value)}
+            aria-laballedby="search-label"
           />
           <ul>
             {this.props.places.map(place => (

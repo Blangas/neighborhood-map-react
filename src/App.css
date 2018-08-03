@@ -50,6 +50,11 @@ h2 {
   margin-left: 20px;
 }
 
+#search-label {
+  margin: 0 20px;
+  font-size: 0.7em;
+}
+
 .search-box {
   margin-left: 20px;
 }
