@@ -95,7 +95,7 @@ li > button:focus {
 }
 
 
-@media (max-width: 500px) {
+@media only screen and (max-width: 500px) {
   .map>div {
     width: 100%;
   }
@@ -105,7 +105,7 @@ li > button:focus {
   }
 }
 
-@media (min-width: 501px) {
+@media only screen and (min-width: 501px) {
   .hide-button {
     display: none;
   }
