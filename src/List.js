@@ -7,7 +7,7 @@ class List extends Component {
     hideButtonIndex: -1
   }
 
-  // function to shorten too long list items
+  // function to shorten too long list items names
   titleShortener = (title) => {
     if (title.length > 20) {
       return title.slice(0, 20) + '...'
@@ -16,6 +16,7 @@ class List extends Component {
     }
   }
 
+  // this and next function is to hide/show list menu connected to buttons
   showList = () => {
     this.setState({
       showMenu: '',

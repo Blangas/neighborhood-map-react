@@ -13,8 +13,6 @@ export default class InfoWindowContent extends Component {
     if (prevProps.photos !== this.props.photos) {
       this.setState({photos: this.props.photos})
     }
-    console.log('InfoWindowContent updated')
-    console.log(this.state.photos)
   }
 
   render () {

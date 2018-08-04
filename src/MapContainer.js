@@ -29,6 +29,7 @@ export class MapContainer extends Component {
     this.setState({places: this.props.places})
   }
 
+  // On map click deselects marker
   onMapClick = (mapProps, map, e) => {
     this.setState({
       activeMarker: null,
@@ -37,6 +38,7 @@ export class MapContainer extends Component {
     })
   }
 
+  // Function to generate flickr request link and request photos
   infoWindowContent = (marker) => {
     let flickrSearch = 'https://api.flickr.com/services/rest/?'+
     'method=flickr.photos.search'+

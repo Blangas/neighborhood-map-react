@@ -4,7 +4,7 @@ import MapContainer from './MapContainer'
 import List from './List'
 
 
-
+// The default list of places to render
 const allPlaces = [
   {
     title: 'Boulton, Watt and Murdoch Statue',
@@ -51,7 +51,7 @@ export class App extends Component {
     pickMarkerName: ''
   }
 
-  // function to filter original places and give new places array for rendering
+  // function to take value from search box and filter original places and give new places array for rendering
   filterPlaces = (value) => {
     if (value) {
       value = value.trim().toLowerCase()
@@ -62,6 +62,7 @@ export class App extends Component {
     }
   }
 
+  // Function invoked by clicking list button and changing name by which to select marker
   pickMarker = (e) => {
     e.preventDefault()
     this.setState({pickMarkerName: e.target.className})
