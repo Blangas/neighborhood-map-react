@@ -59,6 +59,7 @@ export class MapContainer extends Component {
     })
   }
 
+  // Function to activate in the map clicked marker
   pickMarker = (props, marker, e) => {
     this.setState({
       activeMarker: marker,
@@ -66,14 +67,15 @@ export class MapContainer extends Component {
       showingInfoWindow: true,
     })
     this.state.activeMarker.setAnimation(1)
-
     this.infoWindowContent(marker)
   }
 
   componentDidUpdate(prevProps, prevState) {
+    // Updates list of places by which to render markers
     if (prevProps.places !== this.props.places) {
       this.setState({places: this.props.places})
     }
+
     // Sets active marker from list pick
     if (prevState.pickMarkerName !== this.props.pickMarkerName) {
       let markers = this.markers
@@ -90,6 +92,8 @@ export class MapContainer extends Component {
         }
       }
     }
+
+    // Removes bounce animation from previously selected marker
     if (prevState.activeMarker && prevState.activeMarker !== this.state.activeMarker) {
       prevState.activeMarker.setAnimation(null)
     }
