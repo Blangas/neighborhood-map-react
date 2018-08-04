@@ -20,7 +20,8 @@ export class MapContainer extends Component {
     showingInfoWindow: true,
     places: [],
     pickMarkerName: null,
-    photos: []
+    photos: [],
+    markerAnimation: 'DROP'
   }
 
   markers = []
@@ -77,12 +78,18 @@ export class MapContainer extends Component {
       markers.splice(this.props.places.length) // fix to remove null elements after array becomes shorter because of search function
       for (let i = 0; i < markers.length; i++) {
         if (markers[i].marker.name === this.props.pickMarkerName) {
-          this.setState({activeMarker: markers[i].marker})
-
+          // if (this.state.activeMarker !== []) {
+          //   this.state.activeMarker.animation = null
+          // }
+          this.setState({activeMarker: markers[i].marker, markerAnimation: 'BOUNCE'})
           this.infoWindowContent(markers[i].marker)
         }
       }
     }
+    // if (this.state.activeMarker && prevState.activeMarker !== this.state.activeMarker) {
+    //   prevState.activeMarker.animation = null
+    //   this.state.activeMarker.animation = this.props.google.maps.Animation.BOUNCE
+    // }
   }
 
   render() {
@@ -96,7 +103,7 @@ export class MapContainer extends Component {
         style={nullStyle}
         onReady={this.onMapReady}
         onClick={this.onMapClick}
-        aria-role="application"
+        role="application"
       >
         {this.state.places.map((place, i) => (
           <Marker
@@ -106,7 +113,7 @@ export class MapContainer extends Component {
             address={place.address}
             name={place.name}
             position={place.position}
-            animation={this.props.google.maps.Animation.DROP}
+            animation={this.props.google.maps.Animation[this.state.markerAnimation]}
             onClick={this.pickMarker}
           />
         ))}

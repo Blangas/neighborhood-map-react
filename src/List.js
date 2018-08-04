@@ -49,7 +49,7 @@ class List extends Component {
             type="text"
             placeholder="Search places"
             onChange={(e) => this.props.filterPlaces(e.target.value)}
-            aria-laballedby="search-label"
+            aria-labelledby="search-label"
           />
           <ul>
             {this.props.places.map(place => (
