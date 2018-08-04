@@ -15,13 +15,12 @@ const nullStyle = {
 
 export class MapContainer extends Component {
   state = {
-    activeMarker: {},
+    activeMarker: null,
     activePlace: {},
     showingInfoWindow: true,
     places: [],
     pickMarkerName: null,
     photos: [],
-    markerAnimation: 'DROP'
   }
 
   markers = []
@@ -37,14 +36,16 @@ export class MapContainer extends Component {
     })
   }
 
-  pickMarker = (props, marker, e) => {
-    this.setState({
-      activeMarker: marker,
-      activePlace: props,
-      showingInfoWindow: true,
-    })
-    this.infoWindowContent(marker)
-  }
+  // markerAnimation = (activeMarker) => {
+  //   console.log(activeMarker)
+  //   this.markers.map((marker) => {
+  //     if (marker === activeMarker) {
+  //       marker.animation = this.props.google.maps.Animation.BOUNCE
+  //     } else {
+  //       marker.animation = this.props.google.maps.Animation.DROP
+  //     }
+  //   })
+  // }
 
   infoWindowContent = (marker) => {
     let flickrSearch = 'https://api.flickr.com/services/rest/?'+
@@ -68,6 +69,20 @@ export class MapContainer extends Component {
     })
   }
 
+  pickMarker = (props, marker, e) => {
+    this.setState({
+      activeMarker: marker,
+      activePlace: props,
+      showingInfoWindow: true,
+    })
+    console.log(this.state.activeMarker)
+    console.log(this.state.activeMarker.getAnimation())
+    this.state.activeMarker.setAnimation(1)
+
+    // this.state.activeMarker.animation = this.props.google.maps.Animation.BOUNCE
+    this.infoWindowContent(marker)
+  }
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.places !== this.props.places) {
       this.setState({places: this.props.places})
@@ -81,15 +96,15 @@ export class MapContainer extends Component {
           // if (this.state.activeMarker !== []) {
           //   this.state.activeMarker.animation = null
           // }
-          this.setState({activeMarker: markers[i].marker, markerAnimation: 'BOUNCE'})
+          this.setState({activeMarker: markers[i].marker})
+          markers[i].marker.setAnimation(1)
           this.infoWindowContent(markers[i].marker)
         }
       }
     }
-    // if (this.state.activeMarker && prevState.activeMarker !== this.state.activeMarker) {
-    //   prevState.activeMarker.animation = null
-    //   this.state.activeMarker.animation = this.props.google.maps.Animation.BOUNCE
-    // }
+    if (prevState.activeMarker && prevState.activeMarker !== this.state.activeMarker) {
+      prevState.activeMarker.setAnimation(null)
+    }
   }
 
   render() {
@@ -113,7 +128,7 @@ export class MapContainer extends Component {
             address={place.address}
             name={place.name}
             position={place.position}
-            animation={this.props.google.maps.Animation[this.state.markerAnimation]}
+            animation={2}
             onClick={this.pickMarker}
           />
         ))}
@@ -133,5 +148,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBqzSZSb8wcrgjC4PyVOGYAlbuYLZ3h3Zc'
+  apiKey: 'AIzaSyAL0P7HWziTI7Ru9Sdjm8xknCa_GtQOETg'
 })(MapContainer)
