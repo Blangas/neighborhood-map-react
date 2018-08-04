@@ -32,20 +32,10 @@ export class MapContainer extends Component {
   onMapClick = (mapProps, map, e) => {
     this.setState({
       activeMarker: null,
-      showingInfoWindow: false
+      showingInfoWindow: false,
+      pickMarkerName: null
     })
   }
-
-  // markerAnimation = (activeMarker) => {
-  //   console.log(activeMarker)
-  //   this.markers.map((marker) => {
-  //     if (marker === activeMarker) {
-  //       marker.animation = this.props.google.maps.Animation.BOUNCE
-  //     } else {
-  //       marker.animation = this.props.google.maps.Animation.DROP
-  //     }
-  //   })
-  // }
 
   infoWindowContent = (marker) => {
     let flickrSearch = 'https://api.flickr.com/services/rest/?'+
@@ -75,11 +65,8 @@ export class MapContainer extends Component {
       activePlace: props,
       showingInfoWindow: true,
     })
-    console.log(this.state.activeMarker)
-    console.log(this.state.activeMarker.getAnimation())
     this.state.activeMarker.setAnimation(1)
 
-    // this.state.activeMarker.animation = this.props.google.maps.Animation.BOUNCE
     this.infoWindowContent(marker)
   }
 
@@ -88,15 +75,16 @@ export class MapContainer extends Component {
       this.setState({places: this.props.places})
     }
     // Sets active marker from list pick
-    if (prevProps.pickMarkerName !== this.props.pickMarkerName) {
+    if (prevState.pickMarkerName !== this.props.pickMarkerName) {
       let markers = this.markers
       markers.splice(this.props.places.length) // fix to remove null elements after array becomes shorter because of search function
       for (let i = 0; i < markers.length; i++) {
         if (markers[i].marker.name === this.props.pickMarkerName) {
-          // if (this.state.activeMarker !== []) {
-          //   this.state.activeMarker.animation = null
-          // }
-          this.setState({activeMarker: markers[i].marker})
+          this.setState({
+            pickMarkerName: this.props.pickMarkerName,
+            activeMarker: markers[i].marker,
+            showingInfoWindow: true
+          })
           markers[i].marker.setAnimation(1)
           this.infoWindowContent(markers[i].marker)
         }
