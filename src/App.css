@@ -6,6 +6,10 @@ body {
 }
 
 /* MAP */
+.err-div {
+  font-size: 3em;
+}
+
 .map>div {
   position: absolute;
   right: 0;

@@ -18,7 +18,7 @@ export default class InfoWindowContent extends Component {
   }
 
   render () {
-    if (this.props.marker) {
+    if (this.props.marker && this.props.photos.length > 0) {
       return (
         <div
           className="info-window"
@@ -33,6 +33,18 @@ export default class InfoWindowContent extends Component {
                   alt={this.props.marker.title+' photo '+i}
                 />
               ))}
+            </div>
+        </div>
+      )
+    } else if (this.props.marker) {
+      return (
+        <div
+          className="info-window"
+          tabIndex="0">
+            <div><strong>{this.props.marker.title}</strong></div>
+            <div>{this.props.marker.address}</div>
+            <div className="photos">
+              <p>...flickr couldn't get any photos...</p>
             </div>
         </div>
       )

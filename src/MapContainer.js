@@ -100,42 +100,50 @@ export class MapContainer extends Component {
   }
 
   render() {
-    return (
-      <Map
-        ref={(map) => {this.map = map}}
-        className={'map'}
-        google={this.props.google}
-        zoom={13}
-        initialCenter={{lat: 52.486243, lng: -1.890401}}
-        style={nullStyle}
-        onReady={this.onMapReady}
-        onClick={this.onMapClick}
-        role="application"
-      >
-        {this.state.places.map((place, i) => (
-          <Marker
-            ref={(marker) => {this.markers[i] = marker}}
-            key={`marker-${place.name}`}
-            title={place.title}
-            address={place.address}
-            name={place.name}
-            position={place.position}
-            animation={2}
-            onClick={this.pickMarker}
-          />
-        ))}
-        <InfoWindow
-          ref={(infoWindow) => {this.infoWindow = infoWindow}}
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-        >
-          <InfoWindowContent
-            marker={this.state.activeMarker}
-            photos={this.state.photos}
-          />
-        </InfoWindow>
-      </Map>
-    )
+    if (!this.props.google) {
+      return (
+        <div className="map">
+          <div className="err-div">Can't load Google Maps API...</div>
+        </div>
+      )
+    } else {
+      return (
+        <Map
+          ref={(map) => {this.map = map}}
+          className={'map'}
+          google={this.props.google}
+          zoom={13}
+          initialCenter={{lat: 52.486243, lng: -1.890401}}
+          style={nullStyle}
+          onReady={this.onMapReady}
+          onClick={this.onMapClick}
+          role="application"
+          >
+            {this.state.places.map((place, i) => (
+              <Marker
+                ref={(marker) => {this.markers[i] = marker}}
+                key={`marker-${place.name}`}
+                title={place.title}
+                address={place.address}
+                name={place.name}
+                position={place.position}
+                animation={2}
+                onClick={this.pickMarker}
+              />
+            ))}
+            <InfoWindow
+              ref={(infoWindow) => {this.infoWindow = infoWindow}}
+              marker={this.state.activeMarker}
+              visible={this.state.showingInfoWindow}
+              >
+                <InfoWindowContent
+                  marker={this.state.activeMarker}
+                  photos={this.state.photos}
+                />
+              </InfoWindow>
+            </Map>
+          )
+    }
   }
 }
 
