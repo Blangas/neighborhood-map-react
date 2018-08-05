@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import MapContainer from './MapContainer'
+import NoMap from './NoMap'
 import List from './List'
 
 
@@ -47,6 +48,7 @@ const allPlaces = [
 
 export class App extends Component {
   state = {
+    mapLoaded: true,
     places: allPlaces,
     pickMarkerName: ''
   }
@@ -70,15 +72,20 @@ export class App extends Component {
 
   componentDidMount() {
     this.setState({pickMarkerName: ''})
+    window.gm_authFailure = () => {
+      this.setState({mapLoaded: false})
+    }
   }
 
   render() {
     return (
       <div className="app">
-        <MapContainer
-          places={this.state.places}
-          pickMarkerName={this.state.pickMarkerName}
-        />
+        {this.state.mapLoaded ?
+          <MapContainer
+            places={this.state.places}
+            pickMarkerName={this.state.pickMarkerName}
+          /> : <NoMap />
+        }
         <List
           places={this.state.places}
           filterPlaces={this.filterPlaces}
